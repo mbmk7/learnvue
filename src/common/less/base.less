@@ -1,0 +1,40 @@
+body, html{
+    line-height: 1;
+    font-weight: 200;
+    font-family: 'Pingfang SC', 'STHeitiSC-Light', 'Helvetica-Light', Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.clearfix{
+    display: inline-block;
+    &::after{
+        display: block;
+        content: ".";
+        height: 0;
+        line-height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+
+
+//为实现1px边框，在y轴上对边框进行缩放
+
+@media screen and (-webkit-min-divice-pixel-ratio:1.5),(min-divice-pixel-ratio:1.5){
+    .border-1px{
+        &::after{
+            -webkit-transform: scaleY(0.7); // 0.7x1.5约等于1，进行y轴上的缩放
+            transform: scaleY(0.7);
+        }
+    }
+}
+
+@media screen and (-webkit-min-divice-pixel-ratio:2),(min-divice-pixel-ratio:2){
+    .border-1px{
+        &::after{
+            -webkit-transform: scaleY(0.5); // 0.5x2约等于1，进行y轴上的缩放
+            transform: scaleY(0.5);
+        }
+    }
+}

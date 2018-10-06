@@ -1,0 +1,43 @@
+//下1px边框（在bese中的border-1px根据比例Y轴缩放）
+.border-btm-1px(@color){ // @color形参，从外部传入实参
+    position: relative;
+    &:after{ // @表示当前选择器的父选择器，这里是指.border-btm-1px
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;//边框位置定位底部
+        width: 100%;
+        border-top: 1px solid @color;
+        content: '';
+    }
+}
+//上1px边框（在bese中的border-1px根据比例Y轴缩放）
+.border-top-1px(@color){ // @color形参，从外部传入实参
+    position: relative;
+    &:before{ // @表示当前选择器的父选择器，这里是指.border-top-1px
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;//边框位置定位顶部
+        width: 100%;
+        border-top: 1px solid @color;
+        content: '';
+    }
+}
+//去掉1px边框
+.border-none(){
+    &:after{
+        display: none;
+    }
+}
+
+
+//处理2x 3x图片
+// ~告诉webpack引用路径的字符串最前面添加上 ~ 符号,Webpack 会将以 ~ 符号作为前缀的路径视作依赖模块而去解析。
+//没有~符号会解析到less录下报错
+.bg-image(@url){
+    background-image: ~"url(@{url}@2x.png)";
+    @media screen and (-webkit-min-divice-pixel-ratio:3),(min-divice-pixel-ratio:3){
+        background-image: ~"url(@{url}@3x.png)";
+    }
+}
